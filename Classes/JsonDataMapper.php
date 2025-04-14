@@ -27,6 +27,7 @@ class JsonDataMapper {
         if (!file_exists($this->tasksFile)) return [];
         $json = file_get_contents($this->tasksFile);
         $data = json_decode($json, true);
+        if (!is_array($data)) return []; 
         return array_map(function($task) {
             return new Task(
                 $task['id'],
